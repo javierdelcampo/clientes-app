@@ -12,8 +12,8 @@ export class DirectivaComponent {
 
   constructor() { }
 
-  ocultar() {
-    this.habilitar = !this.habilitar;
+  setHabilitar(): void {
+    this.habilitar = (this.habilitar == true) ? false : true;
   }
 
 }
