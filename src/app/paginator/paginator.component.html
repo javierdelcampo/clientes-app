@@ -1,0 +1,13 @@
+<ul *ngIf="paginas?.length > 0" class="pagination" style="overflow: scroll;">
+    <li class="page-item" [ngClass]="paginador.number == 0?'disabled':''">
+        <span *ngIf="paginador.number == 0" class="page-link">&laquo;</span>
+        <a *ngIf="paginador.number > 0" class="page-link" [routerLink]="['/clientes/page', paginador.number - 1]">&laquo;</a>
+    </li> 
+    <li *ngFor="let pagina of paginas" class="page-item" [ngClass]="pagina -1 == paginador.number?'disabled':''">
+        <span *ngIf="pagina -1 == paginador.number" class="page-link">{{pagina}}</span>
+        <a *ngIf="pagina -1 != paginador.number" class="page-link" [routerLink]="['/clientes/page', pagina - 1]">{{pagina}}</a>
+    </li>
+    <li class="page-item" *ngIf="paginador.number < paginador.totalPages - 1">
+        <a class="page-link" [routerLink]="['/clientes/page', paginador.number + 1]">&raquo;</a>
+    </li> 
+</ul>
