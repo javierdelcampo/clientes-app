@@ -20,6 +20,7 @@
           <th>apellido</th>
           <th>email</th>
           <th>fecha</th>
+          <th *ngIf="authService.hasRole('ROLE_ADMIN')">crear factura</th>
           <th *ngIf="authService.hasRole('ROLE_ADMIN')">editar</th>
           <th *ngIf="authService.hasRole('ROLE_ADMIN')">eliminar</th>
         </tr>
@@ -31,13 +32,14 @@
             style="width:64px; cursor: pointer;">
 
             <img (click)="abrirModal(cliente)" *ngIf="!cliente?.foto"
-              src="http://localhost:4200/images/empty.png" alt="Sin foto" class="img-thumbnail rounded"
+              src="http://localhost:8080/images/no-usuario.png" alt="Sin foto" class="img-thumbnail rounded"
               style="width:64px; cursor: pointer;">
             </td>
           <td>{{ cliente.nombre }}</td>
           <td>{{ cliente.apellido | uppercase }}</td>
           <td>{{ cliente.email }}</td>
           <td>{{ cliente.createAt | date:"EEEE dd, MMMM yyyy"}}</td>
+          <td *ngIf="authService.hasRole('ROLE_ADMIN')"><button type="button" class="btn btn-success btn-sm" [routerLink]="['/facturas/form', cliente.id]">crear factura</button></td>
           <td *ngIf="authService.hasRole('ROLE_ADMIN')">
             <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-primary btn-sm">editar</button>
           </td>
